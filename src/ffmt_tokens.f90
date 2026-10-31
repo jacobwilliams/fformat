@@ -91,7 +91,7 @@ pure function token_text(src, t) result(text)
     !! Token text, as it appears in the source.
     character(len=*), intent(in) :: src   !! the source the token was read from
     type(token_t), intent(in) :: t        !! a token of `src`
-    character(len=:), allocatable :: text
+    character(len=t%last - t%first + 1) :: text
     text = src(t%first:t%last)
 end function token_text
 
@@ -99,7 +99,7 @@ pure function token_lower(src, t) result(text)
     !! Token text in lowercase (ASCII).
     character(len=*), intent(in) :: src   !! the source the token was read from
     type(token_t), intent(in) :: t        !! a token of `src`
-    character(len=:), allocatable :: text
+    character(len=t%last - t%first + 1) :: text
     text = src(t%first:t%last)
     call make_lowercase(text)
 end function token_lower

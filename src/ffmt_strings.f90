@@ -34,11 +34,25 @@ pure integer function utf8_width(text) result(w)
     end do
 end function utf8_width
 
+pure integer function int_width(i)
+    !! Number of characters of `i` as text, with any sign.
+    integer, intent(in) :: i    !! the number
+    integer :: n
+
+    n = i
+    int_width = merge(2, 1, i < 0)
+    do
+        n = n/10
+        if (n == 0) exit
+        int_width = int_width + 1
+    end do
+end function int_width
+
 pure function to_s(i) result(s)
     !! Integer to string, without padding. Digits are built by hand: an internal `write` costs
     !! far more, and this is called for every token by the safety check.
     integer, intent(in) :: i            !! the number
-    character(len=:), allocatable :: s
+    character(len=int_width(i)) :: s
     character(len=12) :: buf
     integer :: k, n
 

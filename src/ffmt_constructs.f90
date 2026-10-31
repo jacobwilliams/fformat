@@ -44,6 +44,7 @@ integer, parameter, public :: C_CONTAINS = 21    !! `contains` (a middle stateme
 integer, parameter, public :: C_ENUMERATION = 22 !! `enumeration type` (F2023)
 
 integer, parameter :: NCONSTRUCTS = 22
+integer, parameter :: WORD_LEN = 32     !! longer than any keyword
 character(len=*), parameter :: LABELS(0:NCONSTRUCTS) = [character(len=16) :: &
                                                         'none', 'end', 'program', 'module', 'submodule', 'subroutine', 'function', &
                                                         'procedure', &
@@ -70,14 +71,21 @@ end type words_t
 
 contains
 
+pure integer function label_width(construct)
+    !! Length of the text of `construct_label`.
+    integer, intent(in) :: construct   !! one of the `C_*` constants
+    label_width = 1
+    if (construct >= 0 .and. construct <= NCONSTRUCTS) label_width = len_trim(LABELS(construct))
+end function label_width
+
 pure function construct_label(construct) result(label)
     !! Name of a construct for messages (`'if'`, `'select'`, `'end'` for a bare `end`), or `'?'`.
     integer, intent(in) :: construct   !! one of the `C_*` constants
-    character(len=:), allocatable :: label
+    character(len=label_width(construct)) :: label
     if (construct < 0 .or. construct > NCONSTRUCTS) then
         label = '?'
     else
-        label = trim(LABELS(construct))
+        label = LABELS(construct)
     end if
 end function construct_label
 
@@ -125,15 +133,18 @@ contains
     end function is_name
 
     function word(j) result(t)
-        !! Lowercase word `j`, or '' past the end.
+        !! Lowercase word `j`, or blank past the end. Words are only compared with keywords, all
+        !! shorter than `WORD_LEN`, so one that is cut short cannot match by mistake. The length is
+        !! fixed because classification must be thread-safe: the length of a deferred-length
+        !! function result is kept in static storage by gfortran.
         integer, intent(in) :: j   !! index into the words `wd`
-        character(len=:), allocatable :: t
+        character(len=WORD_LEN) :: t
         if (j > wd%n) then
             t = ''
         else if (j <= size(wd%w)) then
             t = wd%w(j)%s
         else
-            t = v%word(wd%tok(j))
+            t = v%low(v%lo(wd%tok(j)):v%hi(wd%tok(j)))
         end if
     end function word
 

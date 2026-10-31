@@ -119,7 +119,7 @@ subroutine analyze_structure(source, views, st, diags)
                 call diagnose(line, construct_label(info(k)%construct)//' statement outside any construct')
             else if (.not. middle_fits(info(k)%construct, stack%s(stack%top)%construct)) then
                 call diagnose(line, construct_label(info(k)%construct)//' statement inside '// &
-                              opened(stack%s(stack%top)))
+                              trim(opened(stack%s(stack%top))))
             else
                 depth(k) = stack%top - 1
             end if
@@ -220,19 +220,19 @@ contains
         do j = stack%top - 1, 1, -1
             if (closes(construct, stack%s(j)%construct)) then
                 call diagnose(line, 'end '//construct_label(construct)//' closes '// &
-                              opened(stack%s(stack%top)))
+                              trim(opened(stack%s(stack%top))))
                 stack%top = j - 1
                 return
             end if
         end do
         call diagnose(line, 'end '//construct_label(construct)//' does not match '// &
-                      opened(stack%s(stack%top)))
+                      trim(opened(stack%s(stack%top))))
     end subroutine close_scope
 
     function opened(sc) result(text)
         !! `sc` for messages: `do (opened on line 12)`.
         type(scope_t), intent(in) :: sc   !! an open construct
-        character(len=:), allocatable :: text
+        character(len=64) :: text
         text = construct_label(sc%construct)//' (opened on line '//to_s(sc%line)//')'
     end function opened
 
