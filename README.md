@@ -343,7 +343,7 @@ test-drive):
 
 | Tool | Version | Time (s) | Lines/s | Relative time |
 |---|---|--:|--:|--:|
-| fformat | 1.0.1 | 0.075 | 508,862 | 🟢 1.0x |
+| fformat | 1.0.2 | 0.075 | 508,862 | 🟢 1.0x |
 | fprettier | 0.5.0 | 0.165 | 231,501 | 🟡 2.2x |
 | ffmt | 0.4.5 | 2.457 | 15,573 | 🔴 32.7x |
 | fprettify | 0.3.7 | 4.760 | 8,038 | 🔴 63.3x |
@@ -357,7 +357,7 @@ depends on, at the revisions `fpm update` fetched:
 
 | Tool | Version | Time (s) | Lines/s | Relative time |
 |---|---|--:|--:|--:|
-| fformat | 1.0.1 | 0.367 | 499,887 | 🟢 1.0x |
+| fformat | 1.0.2 | 0.367 | 499,887 | 🟢 1.0x |
 | fprettier | 0.5.0 | 0.682 | 269,495 | 🟡 1.9x |
 | ffmt | 0.4.5 | 11.165 | 16,451 | 🔴 30.4x |
 | fprettify | 0.3.7 | 20.888 | 8,793 | 🔴 56.9x |
