@@ -339,14 +339,14 @@ This repository's sources and the Fortran dependencies that fpm fetches for it (
 test-drive):
 
 <!-- benchmark:default:start -->
-139 files, 38,264 lines; median of 5 runs, formatting in place with default settings. Darwin arm64, Apple M5, 10 cores. 2 file(s) that a tool could not format were left out.
+139 files, 38,281 lines; median of 5 runs, formatting in place with default settings. Darwin arm64, Apple M5, 10 cores. 2 file(s) that a tool could not format were left out.
 
 | Tool | Version | Time (s) | Lines/s | Relative time |
 |---|---|--:|--:|--:|
-| fformat | 1.0.2 | 0.075 | 508,862 | 🟢 1.0x |
-| fprettier | 0.5.0 | 0.165 | 231,501 | 🟡 2.2x |
-| ffmt | 0.4.5 | 2.457 | 15,573 | 🔴 32.7x |
-| fprettify | 0.3.7 | 4.760 | 8,038 | 🔴 63.3x |
+| fformat | 1.0.3 | 0.093 | 411,122 | 🟢 1.0x |
+| fprettier | 0.5.0 | 0.179 | 213,811 | 🟡 1.9x |
+| ffmt | 0.4.5 | 2.675 | 14,308 | 🔴 28.7x |
+| fprettify | 0.3.7 | 4.968 | 7,705 | 🔴 53.4x |
 <!-- benchmark:default:end -->
 
 [fortranpack](https://github.com/jacobwilliams/fortranpack) (at `fc527da`) and the 38 libraries it
@@ -357,10 +357,10 @@ depends on, at the revisions `fpm update` fetched:
 
 | Tool | Version | Time (s) | Lines/s | Relative time |
 |---|---|--:|--:|--:|
-| fformat | 1.0.2 | 0.367 | 499,887 | 🟢 1.0x |
-| fprettier | 0.5.0 | 0.682 | 269,495 | 🟡 1.9x |
-| ffmt | 0.4.5 | 11.165 | 16,451 | 🔴 30.4x |
-| fprettify | 0.3.7 | 20.888 | 8,793 | 🔴 56.9x |
+| fformat | 1.0.3 | 0.375 | 489,993 | 🟢 1.0x |
+| fprettier | 0.5.0 | 0.694 | 264,738 | 🟡 1.9x |
+| ffmt | 0.4.5 | 11.389 | 16,126 | 🔴 30.4x |
+| fprettify | 0.3.7 | 20.764 | 8,845 | 🔴 55.4x |
 <!-- benchmark:fortranpack:end -->
 
 To rerun them, or time other files:
