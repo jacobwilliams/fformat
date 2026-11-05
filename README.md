@@ -343,10 +343,10 @@ test-drive):
 
 | Tool | Version | Time (s) | Lines/s | Relative time |
 |---|---|--:|--:|--:|
-| fformat | 1.0.3 | 0.093 | 411,122 | 🟢 1.0x |
-| fprettier | 0.5.0 | 0.179 | 213,811 | 🟡 1.9x |
-| ffmt | 0.4.5 | 2.675 | 14,308 | 🔴 28.7x |
-| fprettify | 0.3.7 | 4.968 | 7,705 | 🔴 53.4x |
+| fformat | 1.0.3 | 0.076 | 506,296 | 🟢 1.0x |
+| fprettier | 0.5.0 | 0.171 | 223,885 | 🟡 2.3x |
+| ffmt | 0.4.5 | 2.515 | 15,218 | 🔴 33.3x |
+| fprettify | 0.3.7 | 4.765 | 8,034 | 🔴 63.0x |
 <!-- benchmark:default:end -->
 
 [fortranpack](https://github.com/jacobwilliams/fortranpack) (at `fc527da`) and the 38 libraries it
